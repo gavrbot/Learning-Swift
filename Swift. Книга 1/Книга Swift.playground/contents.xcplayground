@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='Часть 2. Базовые возможности Swift'/>
+        <page name='Часть 4. Основные возможности Swift'/>
+        <page name='Часть 6. Нетривиальные возможности Swift'/>
+        <page name='Часть 3. Контейнерные типы данных'/>
+        <page name='Big O нотация'/>
+    </pages>
+</playground>
