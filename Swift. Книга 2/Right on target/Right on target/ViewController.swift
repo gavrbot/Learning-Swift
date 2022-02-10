@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     // сумма очков за раунд
     var points: Int = 0
     
+    // создаём ленивое вычисляемое свойство для получения secondViewController, которое позволит загрузить экземпляр SecondViewController только один раз, а затем доставать из памяти
+    lazy var secondViewController = getSecondViewController()
+    
     @IBAction func checkNumber() {
         // получаем значение числа из слайдера
         let numSlider = Int(self.slider.value.rounded())
@@ -94,5 +97,20 @@ class ViewController: UIViewController {
         super.viewDidDisappear(animated)
         print("viewDidDisappear")
     }
+    
+    // функция для подгрузки SecondViewController для ленивого вычисляемого свойства
+    private func getSecondViewController() -> SecondViewController {
+        // UIStoryBoard позволяет представить сторибоард в виде сущности, и использовать в дальнейшем
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // из него достаём ViewController с указанным именем(поле id в Identity Inspector)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SecondViewController")
+        return viewController as! SecondViewController
+    }
+    
+    @IBAction func showNextScreen() {
+        // отображаем сцену из SecondViewController c помощью present(также можно использовать метод show())
+        self.present(secondViewController, animated: true, completion: nil)
+    }
+    
 }
 
