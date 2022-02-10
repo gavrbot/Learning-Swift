@@ -107,10 +107,5 @@ class ViewController: UIViewController {
         return viewController as! SecondViewController
     }
     
-    @IBAction func showNextScreen() {
-        // отображаем сцену из SecondViewController c помощью present(также можно использовать метод show())
-        self.present(secondViewController, animated: true, completion: nil)
-    }
-    
 }
 

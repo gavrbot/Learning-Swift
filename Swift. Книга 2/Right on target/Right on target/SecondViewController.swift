@@ -39,9 +39,4 @@ class SecondViewController: UIViewController {
         print("viewDidDisappear SecondViewController")
     }
     
-    @IBAction func hideCurrectScene() {
-        // функция dismiss противоположна действию функции present, то есть убирает элемент со сцены
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
