@@ -32,9 +32,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
-        game = Game(startValue: 1, endValue: 50, round: 5)
+        let secretValueGenerator = Generator(startWith: 1, endWith: 50)
+        game = Game(valueGenerator: secretValueGenerator!, rounds: 5)
         // передаём значение числа в label
-        updateLabelWithSecretNumber(with: game.currentSecretValue)
+        updateLabelWithSecretNumber(with: game.currentRound.currentSecretValue)
     }
 
     // функция вызывается перед тем, как элементы сцены будут добавлены в иерархию графических элементов
@@ -63,13 +64,13 @@ class ViewController: UIViewController {
     
     // MARK: - Взаимодействие View - Model
     @IBAction func checkNumber() {
-        self.game?.calculateScore(with: Int(self.slider.value))
+        self.game.currentRound.calculateScore(with: Int(self.slider.value))
         if self.game.isGameEnded {
             showAlert(with: game.score)
             game.restartGame()
         } else {
             game.startNewRound()
-            updateLabelWithSecretNumber(with: game.currentSecretValue)
+            updateLabelWithSecretNumber(with: game.currentRound.currentSecretValue)
         }
     }
     
@@ -78,8 +79,10 @@ class ViewController: UIViewController {
             title: "Игра окончена",
             message: "Вы заработали \(score) очков",
             preferredStyle: .alert)
-        // добавляем экшн к нему(то есть кнопку)
-        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+        // добавляем экшн к нему(то есть кнопку), к которой привязали handler, где после нажатия кнопки отобразится новое число
+        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: {
+            [self] _ in self.updateLabelWithSecretNumber(with: self.game.currentRound.currentSecretValue)
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
