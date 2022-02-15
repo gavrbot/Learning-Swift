@@ -7,55 +7,58 @@
 import Foundation
 
 protocol GameProtocol {
-    // количество очков за игру
+    associatedtype SecretType
+    // Количество заработанных очков
     var score: Int { get }
-    var secretValueGenerator: GeneratorProtocol! { get }
-    var currentRound: GameRoundProtocol! { get }
+    // Секретное число
+    var secretValue: SecretType { get }
+    // Проверяет, окончена ли игра
     var isGameEnded: Bool { get }
-    
+    // Начинает новую игру и сразу стартует первый раунд
     func restartGame()
+    // Начинает новый раунд
     func startNewRound()
+    // сравнение значения пользователя с загаданным и подсчет очков
+    func calculateScore(secretValue: SecretType, userValue: SecretType)
 }
 
-// класс выбран вместо структуры, так как при небольшой логике программы и малом количестве view разницы между ними нет, но при увеличении масштаба игры будут расти количества классов и обработчиков класса игры, где потребуется именно передача класса по ссылке, а не по значению, так как иначе расход памяти будет большим
-class Game: GameProtocol {
-    var score: Int {
-        var totalScore = 0
-        for round in rounds {
-            totalScore += round.score
-        }
-        return totalScore
-    }
-    var secretValueGenerator: GeneratorProtocol!
-    var currentRound: GameRoundProtocol!
-    private var roundsCount: Int
-    private var rounds: [GameRoundProtocol] = []
+class Game<T: SecretValueProtocol>: GameProtocol {
+    typealias SecretType = T
+    var score: Int = 0
+    // секретное значение
+    var secretValue: T
+    // замыкание производит сравнение значений и возвращает заработанные очки
+    private var compareClosure: (T, T) -> Int
+    private var roundsCount: Int!
+    private var currentRoundNumber: Int = 0
     var isGameEnded: Bool {
-        if roundsCount == rounds.count {
+        if currentRoundNumber == roundsCount {
             return true
         } else {
             return false
         }
     }
-    
-    init(valueGenerator: GeneratorProtocol, rounds: Int) {
-        secretValueGenerator = valueGenerator
+
+    init(secretValue: T, rounds: Int, compareClosure: @escaping (T, T) -> Int) {
+        self.secretValue = secretValue
         roundsCount = rounds
+        self.compareClosure = compareClosure
         startNewRound()
     }
     
     func restartGame() {
-        rounds = []
+        score = 0
+        currentRoundNumber = 0
         startNewRound()
     }
-    
+
     func startNewRound() {
-        let newSecretValue = self.getNewSecretValue()
-        currentRound = GameRound(secretValue: newSecretValue)
-        rounds.append(currentRound)
+        currentRoundNumber += 1
+        self.secretValue.setRandomValue()
     }
     
-    private func getNewSecretValue() -> Int {
-        return secretValueGenerator.getRandomValue()
+    func calculateScore(secretValue: T, userValue: T) {
+        score = score + compareClosure(secretValue, userValue)
     }
+    
 }

@@ -11,13 +11,10 @@ class NumberViewController: UIViewController {
 
     // использование опционала является обязательным, иначе приложение упадёт в процессе запуска, так как в процессе создания класса аутлеты не имеют значений, их привязка происходит позже, но экземпляр класса не может иметь неопциональный свойств без значений, отсюда и возникнет ошибка
     @IBOutlet var slider: UISlider!
-    @IBOutlet var label: UILabel!
+    @IBOutlet var secretValueLabel: UILabel!
     
     // экземпляр класса игра
-    var game: Game!
-    
-    // создаём ленивое вычисляемое свойство для получения secondViewController, которое позволит загрузить экземпляр SecondViewController только один раз, а затем доставать из памяти
-    lazy var secondViewController = getSecondViewController()
+    var game: Game<SecretNumericValue>!
     
     // загружает все размещённые на сцене элементы
     // вызывается только один раз при первой загрузке сцены
@@ -32,10 +29,9 @@ class NumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
-        let secretValueGenerator = Generator(startWith: 1, endWith: 50)
-        game = Game(valueGenerator: secretValueGenerator!, rounds: 5)
+        game = (GameFactory.getNumericGame() as! Game<SecretNumericValue>)
         // передаём значение числа в label
-        updateLabelWithSecretNumber(with: game.currentRound.currentSecretValue)
+        updateLabelWithSecretNumber(with: game.secretValue.value)
     }
 
     // функция вызывается перед тем, как элементы сцены будут добавлены в иерархию графических элементов
@@ -64,14 +60,22 @@ class NumberViewController: UIViewController {
     
     // MARK: - Взаимодействие View - Model
     @IBAction func checkNumber() {
-        self.game.currentRound.calculateScore(with: Int(self.slider.value))
-        if self.game.isGameEnded {
+        // Высчитываем очки за раунд
+        var userSecretValue = game.secretValue
+        userSecretValue.value = Int(slider.value)
+        game.calculateScore(secretValue: game.secretValue, userValue: userSecretValue)
+        // Проверяем, окончена ли игра
+        if game.isGameEnded {
+            // Показываем окно с итогами
             showAlert(with: game.score)
+            // Рестартуем игру
             game.restartGame()
         } else {
+            // Начинаем новый раунд игры
             game.startNewRound()
-            updateLabelWithSecretNumber(with: game.currentRound.currentSecretValue)
         }
+        // Обновляем данные о текущем значении загаданного числа
+        updateLabelWithSecretNumber(with: game.secretValue.value)
     }
     
     private func showAlert(with score: Int) {
@@ -81,23 +85,14 @@ class NumberViewController: UIViewController {
             preferredStyle: .alert)
         // добавляем экшн к нему(то есть кнопку), к которой привязали handler, где после нажатия кнопки отобразится новое число
         alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: {
-            [self] _ in self.updateLabelWithSecretNumber(with: self.game.currentRound.currentSecretValue)
+            [self] _ in self.updateLabelWithSecretNumber(with: self.game.secretValue.value)
         }))
         self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Обновление View
     private func updateLabelWithSecretNumber(with number: Int) {
-        self.label.text = String(number)
-    }
-    
-    // функция для подгрузки SecondViewController для ленивого вычисляемого свойства
-    private func getSecondViewController() -> SecondViewController {
-        // UIStoryBoard позволяет представить сторибоард в виде сущности, и использовать в дальнейшем
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // из него достаём ViewController с указанным именем(поле id в Identity Inspector)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SecondViewController")
-        return viewController as! SecondViewController
+        self.secretValueLabel.text = String(number)
     }
     
 }
