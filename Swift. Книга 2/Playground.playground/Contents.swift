@@ -1,6 +1,7 @@
-/// Здесь будет рассмотрен шаблон делегирования. Примером будет ведение статистики в мессенджере по типу сообщений (аудиофайлы, картинки и тд). Базовый тип будет отвечать только за передачу сообщения, а сбор статистики будет осуществляться типом-делегатом
+/// Delegate Pattern. Здесь будет рассмотрен шаблон делегирования. Примером будет ведение статистики в мессенджере по типу сообщений (аудиофайлы, картинки и тд). Базовый тип будет отвечать только за передачу сообщения, а сбор статистики будет осуществляться типом-делегатом
 
 import Foundation
+import CoreGraphics
 
 // протокол сообщения
 protocol MessageProtocol {
@@ -34,6 +35,8 @@ protocol MessengerProtocol {
     var messages: [MessageProtocol] { get set }
     // делегат статистики
     var statisticDelegate: StatisticDelegate? { get set }
+    // ***
+    var dataSource: MessageDataSourceProtocol? { get set }
     
     init()
     
@@ -55,6 +58,8 @@ protocol MessengerProtocol {
 struct Messenger: MessengerProtocol {
     var messages: [MessageProtocol]
     var statisticDelegate: StatisticDelegate?
+    // ***
+    var dataSource: MessageDataSourceProtocol?
     
     init() {
         messages = []
@@ -106,6 +111,14 @@ struct Messenger: MessengerProtocol {
 class MessengerClass: MessengerProtocol {
     var messages: [MessageProtocol]
     weak var statisticDelegate: StatisticDelegate?
+    // ***
+    weak var dataSource: MessageDataSourceProtocol? {
+        didSet {
+            if let source = dataSource {
+                messages = source.getMessages()
+            }
+        }
+    }
     
     required init() {
         messages = []
@@ -139,3 +152,25 @@ messengerClass.statisticDelegate = messengerClass.self
 messengerClass.send(message: Message(text: "Hello Moto", sendDate: Date(), senderId: 28))
 messengerClass.messages.count
 (messengerClass.statisticDelegate as! MessengerClass).messages.count
+
+
+
+/// Data source pattern. Далее будет рассмотрен шаблон источника данных, который является частным случаем делегирования. Если в случае делегирования мы передавали ответственность за выполнение делегату, то здесь мы только хотим получить от делегата конкретные данные, чтобы основной класс их сам обработал.
+
+protocol MessageDataSourceProtocol: AnyObject {
+    func getMessages() -> [MessageProtocol]
+}
+
+// реализуем этот протокол в MessengerProtocol и классе message. Реализации будут помечены как
+// ***
+
+// создадим расширение для класса Messenger
+extension MessengerClass: MessageDataSourceProtocol {
+    func getMessages() -> [MessageProtocol] {
+        return [Message(text: "How are you?", sendDate: Date(), senderId: 1000)]
+    }
+}
+
+var anotherMessenger = MessengerClass()
+anotherMessenger.dataSource = anotherMessenger.self
+anotherMessenger.messages.count
