@@ -13,6 +13,7 @@
 		120051D327BE913F003E264C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120051D127BE913F003E264C /* Main.storyboard */; };
 		120051D527BE9140003E264C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120051D427BE9140003E264C /* Assets.xcassets */; };
 		120051D827BE9140003E264C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120051D627BE9140003E264C /* LaunchScreen.storyboard */; };
+		124C371427C10A45000F1EAE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C371327C10A45000F1EAE /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		120051D427BE9140003E264C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		120051D727BE9140003E264C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		120051D927BE9140003E264C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		124C371327C10A45000F1EAE /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,22 @@
 			children = (
 				120051CB27BE913F003E264C /* AppDelegate.swift */,
 				120051CD27BE913F003E264C /* SceneDelegate.swift */,
+				124C371227C10A33000F1EAE /* Model */,
 				120051CF27BE913F003E264C /* ViewController.swift */,
 				120051D127BE913F003E264C /* Main.storyboard */,
-				120051D427BE9140003E264C /* Assets.xcassets */,
 				120051D627BE9140003E264C /* LaunchScreen.storyboard */,
+				120051D427BE9140003E264C /* Assets.xcassets */,
 				120051D927BE9140003E264C /* Info.plist */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		124C371227C10A33000F1EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				124C371327C10A45000F1EAE /* Contact.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124C371427C10A45000F1EAE /* Contact.swift in Sources */,
 				120051D027BE913F003E264C /* ViewController.swift in Sources */,
 				120051CC27BE913F003E264C /* AppDelegate.swift in Sources */,
 				120051CE27BE913F003E264C /* SceneDelegate.swift in Sources */,
