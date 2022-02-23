@@ -60,12 +60,12 @@
 			children = (
 				120051CB27BE913F003E264C /* AppDelegate.swift */,
 				120051CD27BE913F003E264C /* SceneDelegate.swift */,
+				120051D927BE9140003E264C /* Info.plist */,
 				124C371227C10A33000F1EAE /* Model */,
 				120051CF27BE913F003E264C /* ViewController.swift */,
 				120051D127BE913F003E264C /* Main.storyboard */,
 				120051D627BE9140003E264C /* LaunchScreen.storyboard */,
 				120051D427BE9140003E264C /* Assets.xcassets */,
-				120051D927BE9140003E264C /* Info.plist */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -299,8 +299,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HVC2JF8NK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Contacts/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -326,8 +328,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HVC2JF8NK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Contacts/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

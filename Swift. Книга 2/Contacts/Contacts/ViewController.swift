@@ -11,19 +11,20 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    // используем протокол, а не конкретный класс Contact для уменьшения зависимости от конкретной реализации протокола
+    
+    var storage: ContactStorageProtocol!
+    
+    // используем протокол ContactProtocol, а не конкретный класс Contact для уменьшения зависимости от конкретной реализации протокола
     private var contacts: [ContactProtocol] = [] {
         didSet {
             contacts.sort{ $0.title < $1.title }
+            // сохранение контактов в хранилище
+            storage.save(contacts: contacts)
         }
     }
-    
+            
     private func loadContacts() {
-        contacts.append(Contact(title: "Центурион Передрейхус", phone: "+09921247122"))
-        contacts.append(Contact(title: "Джейк Сулли", phone: "+79093441122"))
-        contacts.append(Contact(title: "Кевин Маккалистер", phone: "+12334441122"))
-        contacts.append(Contact(title: "Барак Обама", phone: "+11110001100"))
-        contacts.append(Contact(title: "Майлс Логан", phone: "+22998874721"))
+        contacts = storage.load()
     }
     
     @IBAction func showNewContactAlert() {
@@ -63,6 +64,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        storage = ContactStorage()
         loadContacts()
     }
 }
