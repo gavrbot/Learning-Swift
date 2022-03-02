@@ -8,13 +8,13 @@
 import Foundation
 
 // протокол, описывающий сущность "Хранилище задач"
-protocol TaskStorageProtocol {
+protocol TasksStorageProtocol {
     func loadTasks() -> [TaskProtocol]
     func saveTasks(_ tasks: [TaskProtocol])
 }
 
 // сущность "Хранилище задач"
-class TaskStorage: TaskStorageProtocol {
+class TasksStorage: TasksStorageProtocol {
     func loadTasks() -> [TaskProtocol] {
         let testTasks: [TaskProtocol] = [
             Task(title: "Побриться", priority: .normal, status: .planned),

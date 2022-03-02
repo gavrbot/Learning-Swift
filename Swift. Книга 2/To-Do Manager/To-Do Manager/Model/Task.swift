@@ -26,7 +26,7 @@ protocol TaskProtocol {
     // название
     var title: String { get set }
     // тип
-    var priority: TaskPriority { get set }
+    var type: TaskPriority { get set }
     // статус
     var status: TaskStatus { get set }
 }
