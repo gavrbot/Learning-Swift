@@ -34,6 +34,6 @@ protocol TaskProtocol {
 // сущность "Задача"
 struct Task: TaskProtocol {
     var title: String
-    var priority: TaskPriority
+    var type: TaskPriority
     var status: TaskStatus
 }

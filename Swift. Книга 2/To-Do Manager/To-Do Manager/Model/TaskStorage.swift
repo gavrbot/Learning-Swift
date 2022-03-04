@@ -17,10 +17,10 @@ protocol TasksStorageProtocol {
 class TasksStorage: TasksStorageProtocol {
     func loadTasks() -> [TaskProtocol] {
         let testTasks: [TaskProtocol] = [
-            Task(title: "Побриться", priority: .normal, status: .planned),
-            Task(title: "Принять душ", priority: .normal, status: .completed),
-            Task(title: "Купить продукты", priority: .important, status: .planned),
-            Task(title: "Поцеловать мами", priority: .important, status: .completed),
+            Task(title: "Побриться", type: .normal, status: .planned),
+            Task(title: "Принять душ", type: .normal, status: .completed),
+            Task(title: "Купить продукты", type: .important, status: .planned),
+            Task(title: "Поцеловать мами", type: .important, status: .completed),
         ]
         return testTasks
     }
