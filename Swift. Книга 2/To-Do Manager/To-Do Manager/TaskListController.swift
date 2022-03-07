@@ -17,6 +17,8 @@ class TaskListController: UITableViewController {
     // порядок отображения секций по типам. Индекс в массиве соответствует индексу секции в таблице
     var sectionsTypePositions: [TaskPriority] = [.important, .normal]
     
+    var tasksStatusPosition: [TaskStatus] = [.planned, .completed]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // загрузка задач
@@ -31,6 +33,16 @@ class TaskListController: UITableViewController {
         // загрузка и разбор задач из хранилища
         tasksStorage.loadTasks().forEach{ task in
             tasks[task.type]?.append(task)
+        }
+        
+        // сортировка списка задач по Int значению в enum TaskStatus
+        // свойство tasksStatusPosition используется вместо enum TaskStatus для уменьшения связность между моделью и контроллером
+        for (tasksGroupPriority, taskGroup) in tasks {
+            tasks[tasksGroupPriority] = taskGroup.sorted { task1, task2 in
+                let task1position = tasksStatusPosition.firstIndex(of: task1.status)
+                let task2position = tasksStatusPosition.firstIndex(of: task2.status)
+                return task1position! < task2position!
+            }
         }
     }
     
@@ -64,7 +76,32 @@ class TaskListController: UITableViewController {
     
     // ячейка для строки таблицы
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getConfiguredTaskCell_constraints(for: indexPath)
+        // ячейка на основе констреинтов
+        // return getConfiguredTaskCell_constraints(for: indexPath)
+        // ячейка на основе стека
+        return getConfiguredTaskCell_stack(for: indexPath)
+    }
+    
+    // ячейка на основе стека
+    private func getConfiguredTaskCell_stack(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellStack", for: indexPath) as! TaskCell
+        let taskType = sectionsTypePositions[indexPath.section]
+        guard let currentTask = tasks[taskType]?[indexPath.row] else {
+            return cell
+        }
+        
+        cell.title.text = currentTask.title
+        cell.symbol.text = getSymbolForTask(with: currentTask.status)
+        
+        if currentTask.status == .planned {
+            cell.title.textColor = .black
+            cell.symbol.textColor = .black
+        } else {
+            cell.title.textColor = .lightGray
+            cell.symbol.textColor = .lightGray
+        }
+        
+        return cell
     }
     
     // ячейка на основе ограничений
@@ -111,5 +148,7 @@ class TaskListController: UITableViewController {
         }
         return resultSymbol
     }
+    
+    
 
 }
