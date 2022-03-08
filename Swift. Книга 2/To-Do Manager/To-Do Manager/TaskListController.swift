@@ -88,6 +88,32 @@ class TaskListController: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+    // функция для ручного перемещения ячеек таблицы между секциями
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // секция, из которой происходит перемещение
+        let taskTypeFrom = sectionsTypePosition[sourceIndexPath.section]
+        // секция, в которую происходит перемещение
+        let taskTypeTo = sectionsTypePosition[destinationIndexPath.section]
+        
+        // безопасно извлекаем задачу с места
+        guard let movedTask = tasks[taskTypeFrom]?[sourceIndexPath.row] else {
+            return
+        }
+        
+        // удаляем задачу с места, откуда она перенесена
+        tasks[taskTypeFrom]!.remove(at: sourceIndexPath.row)
+        // добавляем задачу на новую позицию
+        tasks[taskTypeTo]!.insert(movedTask, at: destinationIndexPath.row)
+        
+        // если секция изменилась, то изменяем тип задачи в соответствии с секцией, куда была перенесена задача
+        if taskTypeFrom != taskTypeTo {
+            tasks[taskTypeTo]![destinationIndexPath.row].type = taskTypeTo
+        }
+        
+        // обновляем данные
+        tableView.reloadData()
+    }
+    
     // функция свайпа для возвращения задачи в статус запланированной
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // получаем данные о текущей задаче, которая нужна для перевода в статус запланированной
