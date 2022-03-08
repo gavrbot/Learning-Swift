@@ -27,7 +27,7 @@ class TaskListController: UITableViewController {
     }
     
     // порядок отображения секций по типам. Индекс в массиве соответствует индексу секции в таблице
-    var sectionsTypePositions: [TaskPriority] = [.important, .normal]
+    var sectionsTypePosition: [TaskPriority] = [.important, .normal]
     
     var tasksStatusPosition: [TaskStatus] = [.planned, .completed]
     
@@ -35,11 +35,13 @@ class TaskListController: UITableViewController {
         super.viewDidLoad()
         // загрузка задач
         loadTasks()
+        // кнопка активации режима редактирования
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
     private func loadTasks() {
         // подготовка коллекции с задачами, будем использовать только те, для которых определены секции в таблице
-        sectionsTypePositions.forEach{ taskType in
+        sectionsTypePosition.forEach{ taskType in
             tasks[taskType] = []
         }
         // загрузка и разбор задач из хранилища
@@ -57,7 +59,7 @@ class TaskListController: UITableViewController {
     // количество строк в определённой секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // определяем приоритет задач, соответствующий текущей секции
-        let taskType = sectionsTypePositions[section]
+        let taskType = sectionsTypePosition[section]
         guard let currentTasksType = tasks[taskType] else {
             return 0
         }
@@ -67,7 +69,7 @@ class TaskListController: UITableViewController {
     // вывод названия секции
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String?
-        let tasksType = sectionsTypePositions[section]
+        let tasksType = sectionsTypePosition[section]
         if tasksType == .important {
             title = "Важные"
         } else  if tasksType == .normal {
@@ -76,10 +78,20 @@ class TaskListController: UITableViewController {
         return title
     }
     
+    // функция обработки нажатия на кнопку редактирования. В данном случае удаляется строка
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // находим задачу для удаления
+        let taskType = sectionsTypePosition[indexPath.section]
+        // удаляем её из списка задач
+        tasks[taskType]?.remove(at: indexPath.row)
+        // удаляем строку с этой задачей
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     // функция свайпа для возвращения задачи в статус запланированной
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // получаем данные о текущей задаче, которая нужна для перевода в статус запланированной
-        let taskType = sectionsTypePositions[indexPath.section]
+        let taskType = sectionsTypePosition[indexPath.section]
         guard let _ = tasks[taskType]?[indexPath.row] else {
             return nil
         }
@@ -100,7 +112,7 @@ class TaskListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 1. проверяем существование задачи, соответствующей заданной строке
-        let taskType = sectionsTypePositions[indexPath.section]
+        let taskType = sectionsTypePosition[indexPath.section]
         guard let _  = tasks[taskType]?[indexPath.row] else {
             return
         }
@@ -131,7 +143,7 @@ class TaskListController: UITableViewController {
         // загружаем прототип ячейки по идентификатору
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellStack", for: indexPath) as! TaskCell
         // получаем данные о задаче, которую необходимо вывести в ячейке
-        let taskType = sectionsTypePositions[indexPath.section]
+        let taskType = sectionsTypePosition[indexPath.section]
         guard let currentTask = tasks[taskType]?[indexPath.row] else {
             return cell
         }
@@ -158,7 +170,7 @@ class TaskListController: UITableViewController {
         // загружаем прототип ячейки по идентификатору
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellConstraints", for: indexPath)
         // получаем данные о задаче, которую необходимо вывести в ячейке
-        let taskType = sectionsTypePositions[indexPath.section]
+        let taskType = sectionsTypePosition[indexPath.section]
         guard let currentTask = tasks[taskType]?[indexPath.row] else {
             return cell
         }
