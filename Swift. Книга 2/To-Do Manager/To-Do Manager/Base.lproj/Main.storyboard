@@ -98,7 +98,7 @@
                     <navigationItem key="navigationItem" id="6BM-25-veG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GLY-aa-dne">
                             <connections>
-                                <segue destination="5un-gT-5rF" kind="show" id="mhZ-uL-MhO"/>
+                                <segue destination="5un-gT-5rF" kind="show" identifier="toCreateScreen" id="mhZ-uL-MhO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -172,15 +172,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="71E-09-JMx" kind="show" id="jcU-6c-DSN"/>
+                                            <segue destination="71E-09-JMx" kind="show" identifier="toTaskTypeScreen" id="jcU-6c-DSN"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kzh-84-9vQ">
-                                        <rect key="frame" x="0.0" y="106" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="106" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kzh-84-9vQ" id="oPk-Fk-zVP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выполнена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raj-u7-vOV">
+                                                    <rect key="frame" x="20" y="11" width="325" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GuF-T4-TXf">
+                                                    <rect key="frame" x="345" y="6" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GuF-T4-TXf" secondAttribute="trailing" id="5fX-ro-XIq"/>
+                                                <constraint firstItem="GuF-T4-TXf" firstAttribute="centerY" secondItem="oPk-Fk-zVP" secondAttribute="centerY" id="Uw1-xL-3zh"/>
+                                                <constraint firstItem="Raj-u7-vOV" firstAttribute="leading" secondItem="oPk-Fk-zVP" secondAttribute="leadingMargin" id="YuI-9p-a7R"/>
+                                                <constraint firstItem="GuF-T4-TXf" firstAttribute="leading" secondItem="Raj-u7-vOV" secondAttribute="trailing" id="l5U-Ni-oAx"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Raj-u7-vOV" secondAttribute="bottom" id="vdw-rG-Vsv"/>
+                                                <constraint firstItem="Raj-u7-vOV" firstAttribute="top" secondItem="oPk-Fk-zVP" secondAttribute="topMargin" id="wfB-At-9eQ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -191,8 +210,15 @@
                             <outlet property="delegate" destination="5un-gT-5rF" id="9wC-Vu-vsi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FXB-uC-cAW"/>
+                    <navigationItem key="navigationItem" id="FXB-uC-cAW">
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="UnF-VD-KId">
+                            <connections>
+                                <action selector="saveTask:" destination="5un-gT-5rF" id="LzX-me-yM1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="taskStatusSwitch" destination="GuF-T4-TXf" id="Cuj-gu-5uj"/>
                         <outlet property="taskTitle" destination="CTs-wi-jnz" id="Dbg-Rw-uDG"/>
                         <outlet property="taskTypeLabel" destination="stu-BK-dx3" id="csS-Ur-Y1J"/>
                     </connections>
