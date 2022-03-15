@@ -23,6 +23,12 @@ class TaskListController: UITableViewController {
                     return task1position! < task2position!
                 }
             }
+            // сохранение задач
+            var savingArray: [TaskProtocol] = []
+            tasks.forEach { _, value in
+                savingArray += value
+            }
+            tasksStorage.saveTasks(savingArray)
         }
     }
     
@@ -33,19 +39,19 @@ class TaskListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // загрузка задач
-        loadTasks()
         // кнопка активации режима редактирования
         navigationItem.leftBarButtonItem = editButtonItem
     }
-
-    private func loadTasks() {
-        // подготовка коллекции с задачами, будем использовать только те, для которых определены секции в таблице
+    
+    // получение списка задач, их разбор и установка в свойство tasks
+    func setTasks(_ tasksCollection: [TaskProtocol]) {
+        // подготовка коллекции с задачами
+        // будем использовать только те задачи, для которых определена секция
         sectionsTypePosition.forEach{ taskType in
             tasks[taskType] = []
         }
-        // загрузка и разбор задач из хранилища
-        tasksStorage.loadTasks().forEach{ task in
+        
+        tasksCollection.forEach { task in
             tasks[task.type]?.append(task)
         }
     }
@@ -140,7 +146,7 @@ class TaskListController: UITableViewController {
             editScreen.taskStatus = self.tasks[taskType]![indexPath.row].status
             
             // передача обработчика для сохранения задачи
-            editScreen.doAfterEdit = { [unowned self] title, type, status in
+            editScreen.doAfterEdit = { [self] title, type, status in
                 let editedtask = Task(title: title, type: type, status: status)
                 tasks[taskType]![indexPath.row] = editedtask
                 tableView.reloadData()
@@ -149,7 +155,7 @@ class TaskListController: UITableViewController {
             self.navigationController?.pushViewController(editScreen, animated: true)
         }
         // изменяем цвет фона кнопки с действие
-        actionEditInstance.backgroundColor = .gray
+        actionEditInstance.backgroundColor = .darkGray
     
         // создаём объект, описывающий доступные действия
         // в зависимости от статуса будет отображено 1 или 2 действия

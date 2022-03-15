@@ -18,7 +18,7 @@
 		127D729E27CE55EF00977989 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127D729C27CE55EF00977989 /* LaunchScreen.storyboard */; };
 		127D72A627CF492300977989 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127D72A527CF492300977989 /* TaskListController.swift */; };
 		12BCE2CD27CFD81400D517CF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE2CC27CFD81400D517CF /* Task.swift */; };
-		12BCE2CF27CFD96300D517CF /* TaskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE2CE27CFD96300D517CF /* TaskStorage.swift */; };
+		12BCE2CF27CFD96300D517CF /* TasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE2CE27CFD96300D517CF /* TasksStorage.swift */; };
 		12BCE2D327CFF04700D517CF /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE2D227CFF04700D517CF /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +36,7 @@
 		127D729F27CE55EF00977989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		127D72A527CF492300977989 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
 		12BCE2CC27CFD81400D517CF /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		12BCE2CE27CFD96300D517CF /* TaskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStorage.swift; sourceTree = "<group>"; };
+		12BCE2CE27CFD96300D517CF /* TasksStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksStorage.swift; sourceTree = "<group>"; };
 		12BCE2D227CFF04700D517CF /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				12BCE2CC27CFD81400D517CF /* Task.swift */,
-				12BCE2CE27CFD96300D517CF /* TaskStorage.swift */,
+				12BCE2CE27CFD96300D517CF /* TasksStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,7 +187,7 @@
 				12BCE2CD27CFD81400D517CF /* Task.swift in Sources */,
 				127D729227CE55EE00977989 /* AppDelegate.swift in Sources */,
 				127D729427CE55EE00977989 /* SceneDelegate.swift in Sources */,
-				12BCE2CF27CFD96300D517CF /* TaskStorage.swift in Sources */,
+				12BCE2CF27CFD96300D517CF /* TasksStorage.swift in Sources */,
 				121B260527DB9D8A00352143 /* TaskTypeController.swift in Sources */,
 				12BCE2D327CFF04700D517CF /* TaskCell.swift in Sources */,
 				127D72A627CF492300977989 /* TaskListController.swift in Sources */,
@@ -341,6 +341,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HVC2JF8NK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "To-Do Manager/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -368,6 +369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HVC2JF8NK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "To-Do Manager/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

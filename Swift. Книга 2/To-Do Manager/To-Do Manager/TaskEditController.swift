@@ -54,7 +54,7 @@ class TaskEditController: UITableViewController {
         if segue.identifier == "toTaskTypeScreen" {
             let destination = segue.destination as! TaskTypeController
             destination.selectedType = taskType
-            destination.doAfterTypeSelected = { [unowned self] selectedType in
+            destination.doAfterTypeSelected = { [self] selectedType in
                 taskType = selectedType
                 taskTypeLabel?.text = taskTitles[taskType]
             }
