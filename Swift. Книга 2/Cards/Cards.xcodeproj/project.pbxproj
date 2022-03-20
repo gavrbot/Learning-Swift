@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		12E88A8227E7A09700278814 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E88A8527E7A09700278814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12E88A8727E7A09700278814 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 				12E88A8E27E7A09900278814 /* Assets.xcassets */,
 				12E88A9027E7A09900278814 /* LaunchScreen.storyboard */,
 				12E88A9327E7A09900278814 /* Info.plist */,
+				12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
