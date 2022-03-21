@@ -17,6 +17,9 @@ class MyViewController : UIViewController {
         let whiteView = getWhiteView()
         let pinkView = getPinkView()
         
+        // поворот красного представления
+        redView.transform = CGAffineTransform(rotationAngle: .pi/3)
+        
         set(view: greenView, toCenterOfView: redView)
         // позиционируем белое представленеи с помощью свойства center, то есть при вызове этого метода whiteView рисуется в центра родительского представления greenView, то есть в redView.
         whiteView.center = greenView.center
@@ -94,22 +97,48 @@ class MyViewController : UIViewController {
         // добавление в иерархию слоёв
         view.layer.addSublayer(layer)
         
+        // вывод в консоль размеров представления
+        print(view.frame)
+        // поворот представления на угол в радианах(а не градуса). Свойство tranform позволяет производить афинные преобразования(перемещение, поворот, масштабирование) над объектами. При повороте само представление не поворачивается, поворачивается его корневой слой, а представление расширяется
+        view.transform = CGAffineTransform(rotationAngle: .pi/4)
+        print(view.frame)
+        
+        // расширение по оси х в 1.5 раза и по оси у в 0.7(сжатие)
+        view.transform = CGAffineTransform(scaleX: 1.5, y: 0.7)
+        
+        // перемещение на 100 точек вправо и на 5 точек вниз
+        view.transform = CGAffineTransform(translationX: 100, y: 5)
+        
+        // множественное преобразование
+        view.transform = CGAffineTransform(rotationAngle: .pi/3).scaledBy(x: 2, y: 0.8).translatedBy(x: 50, y: 50)
+        
+        // метод inverted инвертирует все трансформации над объектом
+        view.transform = view.transform.inverted()
+
+        // свойство identity класса CGAffineTransform для отмены всех преобразований над элементом. Используется в анимации
+        view.transform = CGAffineTransform.identity
+        
+        
+        
         return view
     }
     
     private func set(view moveView: UIView, toCenterOfView baseView: UIView) {
-        // размеры вложенного представления
-        let moveViewWidth = moveView.frame.width
-        let moveViewHeight = moveView.frame.height
+//        // размеры вложенного представления
+//        let moveViewWidth = moveView.frame.width
+//        let moveViewHeight = moveView.frame.height
+//
+//        // размеры родительского представления
+//        let baseViewWidth = baseView.bounds.width
+//        let baseViewHeight = baseView.bounds.height
+//
+//        // вычисление и изменение координат
+//        let newXCoordinate = (baseViewWidth - moveViewWidth) / 2
+//        let newYCoordinate = (baseViewHeight - moveViewHeight) / 2
+//        moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
         
-        // размеры родительского представления
-        let baseViewWidth = baseView.frame.width
-        let baseViewHeight = baseView.frame.height
-        
-        // вычисление и изменение координат
-        let newXCoordinate = (baseViewWidth - moveViewWidth) / 2
-        let newYCoordinate = (baseViewHeight - moveViewHeight) / 2
-        moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
+        // упрощённый вариант
+        moveView.center = CGPoint(x: baseView.bounds.midX, y: baseView.bounds.midY)
     }
     
 }
