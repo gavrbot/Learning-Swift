@@ -15,12 +15,14 @@ class MyViewController : UIViewController {
         let redView = getRedView()
         let greenView = getGreenView()
         let whiteView = getWhiteView()
+        let pinkView = getPinkView()
         
         set(view: greenView, toCenterOfView: redView)
         // позиционируем белое представленеи с помощью свойства center, то есть при вызове этого метода whiteView рисуется в центра родительского представления greenView, то есть в redView.
         whiteView.center = greenView.center
         
         self.view.addSubview( redView )
+        self.view.addSubview( pinkView )
         redView.addSubview( greenView )
         redView.addSubview( whiteView )
         
@@ -56,6 +58,42 @@ class MyViewController : UIViewController {
         let viewFrame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let view = UIView(frame: viewFrame)
         view.backgroundColor = .white
+        return view
+    }
+    
+    private func getPinkView() -> UIView {
+        let viewFrame = CGRect(x: 50, y: 300, width: 100, height: 100)
+        let view = UIView(frame: viewFrame)
+        view.backgroundColor = .systemPink
+        
+        // толщина границ
+        view.layer.borderWidth = 5
+        // цвет границ(borderColor принимает значение типа CGColor)
+        view.layer.borderColor = UIColor.yellow.cgColor
+        // скругление углов. Увеличение значения сделает рамки более круглыми, уменьшение - менее
+        view.layer.cornerRadius = 10
+        // видимость тени(0.0 - не видна, 1.0 - полностью видна)
+        view.layer.shadowOpacity = 0.95
+        // радиус тени. Увеличение значения сделает тень более размытой и менее заметной, уменьшение - более заметной, 0 - убирает размытие
+        view.layer.shadowRadius = 20
+        // смещение тени
+        view.layer.shadowOffset = CGSize(width: 10, height: 20)
+        // цвет тени
+        view.layer.shadowColor = UIColor.white.cgColor
+        // прозрачность слоя(0.0 - слой прозначен и не видел, 1.0 - слой непрозрачен)
+        view.layer.opacity = 0.7
+        
+        // создание дочернего слоя
+        let layer = CALayer()
+        // изменение фонового цвета
+        layer.backgroundColor = UIColor.black.cgColor
+        // изменение размеров и положения
+        layer.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+        // изменение радиуса скругления углов
+        layer.cornerRadius = 10
+        // добавление в иерархию слоёв
+        view.layer.addSublayer(layer)
+        
         return view
     }
     
