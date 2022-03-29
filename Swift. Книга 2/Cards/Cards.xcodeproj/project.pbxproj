@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12667E3127F36DFF00E3142B /* ShapePlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ShapePlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		12E88A8227E7A09700278814 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E88A8527E7A09700278814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 				12E88A9327E7A09900278814 /* Info.plist */,
 				12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */,
 				12F5773827E9DFDD0038C070 /* BezierExperiments.playground */,
+				12667E3127F36DFF00E3142B /* ShapePlayground.playground */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
