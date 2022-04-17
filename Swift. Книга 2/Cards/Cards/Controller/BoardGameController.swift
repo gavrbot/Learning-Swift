@@ -17,6 +17,19 @@ class BoardGameController: UIViewController {
     lazy var startButtonView = getStartButtonView()
     // игровое поле
     lazy var boardGameView = getBoardGameView()
+    // размеры карточек
+    private var cardSize: CGSize {
+        CGSize(width: 80, height: 120)
+    }
+    // предельные координаты размещения карточек
+    private var cardMaxXCoordinate: Int {
+        Int(boardGameView.frame.width - cardSize.width)
+    }
+    private var cardMaxYCoordinate: Int {
+        Int(boardGameView.frame.height - cardSize.height)
+    }
+    // игральные карточки
+    var cardViews = [UIView]()
     
     private func getNewGame() -> Game {
         let game = Game()
@@ -63,7 +76,10 @@ class BoardGameController: UIViewController {
     
     // аннотация @objc позволяет сделать метод видимым для Objective-C, в частности для использования #selector в связывании кнопки с действием
     @objc func startGame(_ sender: UIButton) {
-        print("button was pressed")
+        game = getNewGame()
+        let cards = getCardsBy(modelData: game.cards)
+        placeCardsOnBoard(cards)
+        
     }
     
     private func getBoardGameView() -> UIView {
@@ -91,6 +107,53 @@ class BoardGameController: UIViewController {
         boardView.backgroundColor = UIColor(red: 0.1, green: 0.9, blue: 0.1, alpha: 0.3)
         
         return boardView
+    }
+    
+    // генерация массива карточек на основе данных Модели
+    private func getCardsBy(modelData: [Card]) -> [UIView] {
+        // хранилище для представлений карточек
+        var cardViews = [UIView]()
+        // фабрика карточек
+        let cardViewFactory = CardViewFactory()
+        
+        // перебираем массив карточек в Модели
+        for (index, modelCard) in modelData.enumerated() {
+            // добавляем первый экземпляр карты
+            let cardOne = cardViewFactory.get(modelCard.type, withSize: cardSize, andColor: modelCard.color)
+            // свойству tag присваиваем индекс, чтобы связать карточу в Модели и карточку в Представлении
+            cardOne.tag = index
+            cardViews.append(cardOne)
+            
+            // добавляем второй экземпляр карты
+            let cardTwo = cardViewFactory.get(modelCard.type, withSize: cardSize, andColor: modelCard.color)
+            cardTwo.tag = index
+            cardViews.append(cardTwo)
+        }
+        
+        // добавляем всем картам обработчик переворота
+        for card in cardViews {
+            (card as! FlippableView).flipCompletionHandler = { flippedCard in
+                flippedCard.superview?.bringSubviewToFront(flippedCard)
+            }
+        }
+        return cardViews
+    }
+    
+    private func placeCardsOnBoard(_ cards: [UIView]) {
+        // удалем все имеющие на игровом поле карточки
+        for card in cardViews {
+            card.removeFromSuperview()
+        }
+        cardViews = cards
+        // перебираем карточки
+        for card in cardViews {
+            // для каждой генерируем случайные координаты
+            let randomXCoordinate = Int.random(in: 0...cardMaxXCoordinate)
+            let randomYCoordinate = Int.random(in: 0...cardMaxYCoordinate)
+            card.frame.origin = CGPoint(x: randomXCoordinate, y: randomYCoordinate)
+            // размещаем карточку на игровом поле
+            boardGameView.addSubview(card)
+        }
     }
     
     override func viewDidLoad() {

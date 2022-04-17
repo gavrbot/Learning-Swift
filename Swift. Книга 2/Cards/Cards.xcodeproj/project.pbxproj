@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120E8F6F280CA1EB00F07DDB /* CardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120E8F6E280CA1EB00F07DDB /* CardViewFactory.swift */; };
 		12D922E628084AFB00B3B833 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D922E528084AFB00B3B833 /* Shapes.swift */; };
 		12D922E828084B3400B3B833 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D922E728084B3400B3B833 /* Cards.swift */; };
 		12D922ED28084D0400B3B833 /* BoardGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D922EC28084D0400B3B833 /* BoardGameController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		120E8F6E280CA1EB00F07DDB /* CardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewFactory.swift; sourceTree = "<group>"; };
 		12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		12D922E528084AFB00B3B833 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		12D922E728084B3400B3B833 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		120E8F6D280CA1D700F07DDB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				120E8F6E280CA1EB00F07DDB /* CardViewFactory.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		12D922E428084AE900B3B833 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 				12D922EB28084CC900B3B833 /* Model */,
 				12D922E428084AE900B3B833 /* View */,
 				12D922EA28084CB800B3B833 /* Controller */,
+				120E8F6D280CA1D700F07DDB /* Helpers */,
 				12E88A8E27E7A09900278814 /* Assets.xcassets */,
 				12E88A9327E7A09900278814 /* Info.plist */,
 				12D552CA27E7A1FC0000B4BB /* ViewExperiments.playground */,
@@ -191,6 +202,7 @@
 				12D922F22808513600B3B833 /* Game.swift in Sources */,
 				12D922E828084B3400B3B833 /* Cards.swift in Sources */,
 				12E88A8627E7A09700278814 /* AppDelegate.swift in Sources */,
+				120E8F6F280CA1EB00F07DDB /* CardViewFactory.swift in Sources */,
 				12E88A8827E7A09700278814 /* SceneDelegate.swift in Sources */,
 				12D922E628084AFB00B3B833 /* Shapes.swift in Sources */,
 			);
