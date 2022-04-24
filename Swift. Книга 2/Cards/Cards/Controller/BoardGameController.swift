@@ -30,6 +30,8 @@ class BoardGameController: UIViewController {
     }
     // игральные карточки
     var cardViews = [UIView]()
+    // ссылки на перевёрнутые карточки
+    private var flippedCards = [UIView]()
     
     private func getNewGame() -> Game {
         let game = Game()
@@ -132,8 +134,45 @@ class BoardGameController: UIViewController {
         
         // добавляем всем картам обработчик переворота
         for card in cardViews {
-            (card as! FlippableView).flipCompletionHandler = { flippedCard in
+            (card as! FlippableView).flipCompletionHandler = { [self] flippedCard in
                 flippedCard.superview?.bringSubviewToFront(flippedCard)
+                
+                // добавляем или удаляем карточку
+                if flippedCard.isFlipped {
+                    self.flippedCards.append(flippedCard)
+                } else {
+                    if let cardIndex = self.flippedCards.firstIndex(of: flippedCard) {
+                        self.flippedCards.remove(at: cardIndex)
+                    }
+                }
+                
+                // если перевернуто 2 карточки
+                if self.flippedCards.count == 2 {
+                    // получаем карточки из данных модели
+                    let firstCard = game.cards[self.flippedCards.first!.tag]
+                    let secondCard = game.cards[self.flippedCards.last!.tag]
+                    
+                    // если карточки одинаковые
+                    if game.checkCards(firstCard, secondCard) {
+                        // сперва анимированно скрываем их
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.flippedCards.first!.layer.opacity = 0
+                            self.flippedCards.last!.layer.opacity = 0
+                        // после чего удаляем их из иерархии
+                        }, completion: { _ in
+                            self.flippedCards.first!.removeFromSuperview()
+                            self.flippedCards.last!.removeFromSuperview()
+                            self.flippedCards = []
+                        })
+                    // в ином случчае
+                    } else {
+                        // переворачиваем карточки рубашкой вверх
+                        for card in self.flippedCards {
+                            (card as! FlippableView).flip()
+                        }
+                    }
+                    
+                }
             }
         }
         return cardViews
