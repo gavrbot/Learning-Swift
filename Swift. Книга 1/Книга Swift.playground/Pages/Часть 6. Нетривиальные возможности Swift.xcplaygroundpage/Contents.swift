@@ -277,7 +277,7 @@ Me.wholeName
 class ClosureAboutMan {
     var firstName = "Имя"
     var secondName = "Фамилия"
-    lazy var wholeName: ()->String = { "\(self.firstName) \(self.secondName)" }
+    lazy var wholeName: () -> String = { "\(self.firstName) \(self.secondName)" }
     
     init(firstName: String, secondName: String) {
         (self.firstName, self.secondName) = (firstName, secondName)
