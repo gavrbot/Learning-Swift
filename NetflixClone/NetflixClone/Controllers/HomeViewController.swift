@@ -102,7 +102,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             APICaller.shared.getPopular { result in
                 switch result {
-                  case.success(let titles):
+                case.success(let titles):
                     cell.configure(with: titles)
                 case.failure(let error):
                     print(error.localizedDescription)
@@ -113,7 +113,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             APICaller.shared.getUpcomingMovies { result in
                 switch result {
-                  case.success(let titles):
+                case.success(let titles):
                     cell.configure(with: titles)
                 case.failure(let error):
                     print(error.localizedDescription)
