@@ -12,6 +12,7 @@
 		12AC15E5288FBA0C0062ADBB /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 12AC15E4288FBA0C0062ADBB /* SDWebImageMapKit */; };
 		12AC15E72892B2B60062ADBB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AC15E62892B2B60062ADBB /* TitleTableViewCell.swift */; };
 		12AC15E92892BD300062ADBB /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AC15E82892BD300062ADBB /* TitleViewModel.swift */; };
+		12AC15EB2893BF8C0062ADBB /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AC15EA2893BF8C0062ADBB /* SearchResultViewController.swift */; };
 		12E9FDF3288586A40059ECE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9FDF2288586A40059ECE8 /* AppDelegate.swift */; };
 		12E9FDF5288586A40059ECE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9FDF4288586A40059ECE8 /* SceneDelegate.swift */; };
 		12E9FDF7288586A40059ECE8 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9FDF6288586A40059ECE8 /* MainTabViewController.swift */; };
@@ -32,6 +33,7 @@
 		12AC15DF288FB89F0062ADBB /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		12AC15E62892B2B60062ADBB /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		12AC15E82892BD300062ADBB /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
+		12AC15EA2893BF8C0062ADBB /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		12E9FDEF288586A40059ECE8 /* NetflixClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E9FDF2288586A40059ECE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12E9FDF4288586A40059ECE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12AC15EC2893BFC40062ADBB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				12E9FE07288588620059ECE8 /* HomeViewController.swift */,
+				12E9FE09288588900059ECE8 /* UpcomingViewController.swift */,
+				12E9FE0B288588B20059ECE8 /* SearchViewController.swift */,
+				12E9FE0D288588E10059ECE8 /* DownloadsViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		12AC15ED2893BFD70062ADBB /* General */ = {
+			isa = PBXGroup;
+			children = (
+				12AC15EA2893BF8C0062ADBB /* SearchResultViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		12E9FDE6288586A40059ECE8 = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +122,8 @@
 		12E9FE062885884E0059ECE8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				12E9FE07288588620059ECE8 /* HomeViewController.swift */,
-				12E9FE09288588900059ECE8 /* UpcomingViewController.swift */,
-				12E9FE0B288588B20059ECE8 /* SearchViewController.swift */,
-				12E9FE0D288588E10059ECE8 /* DownloadsViewController.swift */,
+				12AC15ED2893BFD70062ADBB /* General */,
+				12AC15EC2893BFC40062ADBB /* Core */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,6 +262,7 @@
 				12E9FE0A288588900059ECE8 /* UpcomingViewController.swift in Sources */,
 				12F4CB49288F1B70007B7830 /* Title.swift in Sources */,
 				12E9FE08288588620059ECE8 /* HomeViewController.swift in Sources */,
+				12AC15EB2893BF8C0062ADBB /* SearchResultViewController.swift in Sources */,
 				12AC15E92892BD300062ADBB /* TitleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
