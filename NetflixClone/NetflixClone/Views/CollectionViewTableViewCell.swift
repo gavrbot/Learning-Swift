@@ -60,7 +60,7 @@ class CollectionViewTableViewCell: UITableViewCell {
             case.success():
                 NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
             case.failure(let error):
-                print()
+                print(error.localizedDescription)
             }
         }
     }

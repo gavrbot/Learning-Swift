@@ -36,7 +36,6 @@ class TitlePreviewViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        
         return button
     }()
     
@@ -104,5 +103,4 @@ class TitlePreviewViewController: UIViewController {
         
         webView.load(URLRequest(url: url))
     }
-
 }
