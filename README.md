@@ -8,6 +8,8 @@ MVC application with simple table view and CoreData CRUD functionality
 Demo app, created for learning how to work with CoreData
 <h2>CustomBarSwiftUI</h2>
 Demo Swift app, used for learning creating custom toolbars
+<h2>Landmarks</h2>
+Demo Swift app, created with Apple's SwiftUI tutorials
 <h2>MVVM_example</h2>
 Simple login page app, written in MVVM way
 <h2>NetflixClone</h2>
