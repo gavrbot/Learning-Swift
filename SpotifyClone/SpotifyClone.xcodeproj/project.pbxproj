@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1267289928B4152600C1A02F /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267289828B4152600C1A02F /* SettingsModels.swift */; };
 		12CF360328A18FE900DF11FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF360228A18FE900DF11FE /* AppDelegate.swift */; };
 		12CF360528A18FE900DF11FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF360428A18FE900DF11FE /* SceneDelegate.swift */; };
 		12CF360728A18FE900DF11FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF360628A18FE900DF11FE /* HomeViewController.swift */; };
@@ -29,9 +30,12 @@
 		12CF363E28A1935800DF11FE /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF363D28A1935800DF11FE /* AudioTrack.swift */; };
 		12CF364028A1936200DF11FE /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF363F28A1936200DF11FE /* Artist.swift */; };
 		12CF364228A1936E00DF11FE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF364128A1936E00DF11FE /* UserProfile.swift */; };
+		12CF364428A4EE4900DF11FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF364328A4EE4900DF11FE /* Extensions.swift */; };
+		12F66F7D28AEDB1F0067BE63 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F66F7C28AEDB1F0067BE63 /* AuthResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1267289828B4152600C1A02F /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		12CF35FF28A18FE900DF11FE /* SpotifyClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CF360228A18FE900DF11FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CF360428A18FE900DF11FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 		12CF363D28A1935800DF11FE /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
 		12CF363F28A1936200DF11FE /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		12CF364128A1936E00DF11FE /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		12CF364328A4EE4900DF11FE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		12F66F7C28AEDB1F0067BE63 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 				12CF363D28A1935800DF11FE /* AudioTrack.swift */,
 				12CF363F28A1936200DF11FE /* Artist.swift */,
 				12CF364128A1936E00DF11FE /* UserProfile.swift */,
+				12F66F7C28AEDB1F0067BE63 /* AuthResponse.swift */,
+				1267289828B4152600C1A02F /* SettingsModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 				12CF360228A18FE900DF11FE /* AppDelegate.swift */,
 				12CF360428A18FE900DF11FE /* SceneDelegate.swift */,
 				12CF360B28A18FEA00DF11FE /* Assets.xcassets */,
+				12CF364328A4EE4900DF11FE /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -257,13 +266,16 @@
 				12CF362E28A192ED00DF11FE /* ProfileViewController.swift in Sources */,
 				12CF361D28A1925900DF11FE /* TabBarViewController.swift in Sources */,
 				12CF360728A18FE900DF11FE /* HomeViewController.swift in Sources */,
+				12F66F7D28AEDB1F0067BE63 /* AuthResponse.swift in Sources */,
 				12CF363A28A1933600DF11FE /* HapticsManager.swift in Sources */,
 				12CF363E28A1935800DF11FE /* AudioTrack.swift in Sources */,
 				12CF362528A192A900DF11FE /* AuthViewController.swift in Sources */,
 				12CF360328A18FE900DF11FE /* AppDelegate.swift in Sources */,
 				12CF364228A1936E00DF11FE /* UserProfile.swift in Sources */,
+				12CF364428A4EE4900DF11FE /* Extensions.swift in Sources */,
 				12CF362128A1928B00DF11FE /* LibraryViewController.swift in Sources */,
 				12CF363228A192FE00DF11FE /* PlaylistViewController.swift in Sources */,
+				1267289928B4152600C1A02F /* SettingsModels.swift in Sources */,
 				12CF360528A18FE900DF11FE /* SceneDelegate.swift in Sources */,
 				12CF363028A192F500DF11FE /* PlayerViewController.swift in Sources */,
 				12CF363428A1930900DF11FE /* SearchResultViewController.swift in Sources */,
